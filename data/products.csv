@@ -1,0 +1,6 @@
+id,product_name,category_id,supplier_id,purchase_price,selling_price,stock,min_stock,created_at
+1,Laptop,1,1,45000.00,52000.00,20,5,2026-07-01 20:06:08.547
+2,Office Chair,2,2,2500.00,3500.00,15,3,2026-07-01 20:06:08.547
+3,Rice Bag,3,3,900.00,1100.00,40,10,2026-07-01 20:06:08.547
+4,Notebook,4,4,40.00,60.00,100,20,2026-07-01 20:06:08.547
+5,Microwave Oven,5,5,7000.00,8500.00,8,2,2026-07-01 20:06:08.547

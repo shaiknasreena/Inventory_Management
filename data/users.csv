@@ -1,0 +1,6 @@
+id,name,email,password,role,created_at
+1,John Doe,john@example.com,john123,Admin,2026-07-01 20:11:57.895
+2,Alice Smith,alice@example.com,alice123,Manager,2026-07-01 20:11:57.895
+3,Bob Johnson,bob@example.com,bob123,Employee,2026-07-01 20:11:57.895
+4,David Wilson,david@example.com,david123,Employee,2026-07-01 20:11:57.895
+5,Emma Brown,emma@example.com,emma123,Employee,2026-07-01 20:11:57.895

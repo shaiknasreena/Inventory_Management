@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  password   String
+  role       String   @default("Employee")
+  created_at DateTime @default(now())
+
+  @@map("users")
+}
+
+model Category {
+  id            Int      @id @default(autoincrement())
+  category_name String
+  description   String?
+  created_at    DateTime @default(now())
+
+  products Product[]
+
+  @@map("categories")
+}
+
+model Supplier {
+  id            Int      @id @default(autoincrement())
+  supplier_name String
+  phone         String?
+  email         String?
+  address       String?
+  created_at    DateTime @default(now())
+
+  products  Product[]
+  purchases Purchase[]
+
+  @@map("suppliers")
+}
+
+model Product {
+  id             Int      @id @default(autoincrement())
+  product_name   String
+  category_id    Int
+  supplier_id    Int
+  purchase_price Decimal
+  selling_price  Decimal
+  stock          Int      @default(0)
+  min_stock      Int      @default(5)
+  created_at     DateTime @default(now())
+
+  category Category @relation(fields: [category_id], references: [id])
+  supplier Supplier @relation(fields: [supplier_id], references: [id])
+
+  purchaseItems PurchaseItem[]
+  saleItems     SaleItem[]
+
+  @@map("products")
+}
+
+model Purchase {
+  id             Int      @id @default(autoincrement())
+  supplier_id    Int
+  purchase_date  DateTime
+  total_amount   Decimal
+  invoice_number String
+  created_at     DateTime @default(now())
+
+  supplier Supplier @relation(fields: [supplier_id], references: [id])
+
+  items PurchaseItem[]
+
+  @@map("purchases")
+}
+
+model PurchaseItem {
+  id             Int      @id @default(autoincrement())
+  purchase_id    Int
+  product_id     Int
+  quantity       Int
+  purchase_price Decimal
+  total          Decimal
+
+  purchase Purchase @relation(fields: [purchase_id], references: [id])
+  product  Product  @relation(fields: [product_id], references: [id])
+
+  @@map("purchase_items")
+}
+
+model Sale {
+  id             Int      @id @default(autoincrement())
+  customer_name  String
+  sale_date      DateTime
+  total_amount   Decimal
+  invoice_number String
+  created_at     DateTime @default(now())
+
+  items SaleItem[]
+
+  @@map("sales")
+}
+
+model SaleItem {
+  id            Int      @id @default(autoincrement())
+  sale_id       Int
+  product_id    Int
+  quantity      Int
+  selling_price Decimal
+  total         Decimal
+
+  sale    Sale    @relation(fields: [sale_id], references: [id])
+  product Product @relation(fields: [product_id], references: [id])
+
+  @@map("sale_items")
+}

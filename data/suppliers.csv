@@ -1,0 +1,6 @@
+id,supplier_name,phone,email,address,created_at
+1,ABC Suppliers,9876543210,abc@gmail.com,Hyderabad,2026-07-01 19:20:31.403
+2,Global Traders,9876543211,global@gmail.com,Bangalore,2026-07-01 19:20:31.403
+3,Fresh Foods,9876543212,fresh@gmail.com,Chennai,2026-07-01 19:20:31.403
+4,Office Mart,9876543213,office@gmail.com,Mumbai,2026-07-01 19:20:31.403
+5,Home Needs,9876543214,home@gmail.com,Pune,2026-07-01 19:20:31.403
