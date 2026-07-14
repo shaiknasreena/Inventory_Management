@@ -17,7 +17,7 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                echo "Building Docker Image..."
+                echo "Building Docker image..."
                 sh "docker build -t ${IMAGE_NAME}:latest ."
             }
         }
@@ -31,7 +31,6 @@ pipeline {
     }
 
     post {
-
         success {
             echo "CI Pipeline Completed Successfully!"
         }
@@ -39,7 +38,6 @@ pipeline {
         failure {
             echo "CI Pipeline Failed!"
         }
-
     }
 
 }
