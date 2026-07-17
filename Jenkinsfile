@@ -52,7 +52,7 @@ pipeline {
           --name inventory-app \
           --network inventory-network \
           -p 5000:5000 \
-          -e DATABASE_URL="postgresql://postgres:Proc%4012345@host.docker.internal:5432/inventory" \
+          -e DATABASE_URL="postgresql://postgres:postgres@inventory-db:5432/inventory" \
           inventory-management:latest
         """
     }
