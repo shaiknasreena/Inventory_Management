@@ -45,18 +45,17 @@ pipeline {
             }
         }
 
-      stage('Run New Container') {
-    steps {
-        sh """
-        docker run -d \
-          --name inventory-app \
-          --network inventory-network \
-          -p 5000:5000 \
-          -e DATABASE_URL="postgresql://postgres:postgres@inventory-db:5432/inventory" \
-          inventory-management:latest
-        """
-    }
-}
+        stage('Run New Container') {
+            steps {
+                echo "Starting new container..."
+                sh """
+                docker run -d \
+                  --name ${CONTAINER_NAME} \
+                  -p ${PORT}:${PORT} \
+                  ${IMAGE_NAME}:latest
+                """
+            }
+        }
 
         stage('Verify Deployment') {
             steps {
